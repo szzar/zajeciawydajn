@@ -76,3 +76,12 @@ def test_annual_balance_calculation():
 
     annual_balance = manager.get_annual_balance(2025)
     assert annual_balance == 1490.0 # 7500.0 in transfers minus 910.0 in bills minus new bills 500.0 and 4500.0
+
+def test_apartment_has_any_bills():
+    manager = Manager(Parameters())
+    
+    has_bills = manager.has_any_bills('apart-polanka', 2025, 1)
+    assert has_bills == True
+
+    has_bills = manager.has_any_bills('apart-polanka', 2025, 3)
+    assert has_bills == False

@@ -102,3 +102,10 @@ class Manager:
         total_income = sum([transfer.amount_pln for transfer in self.transfers if transfer.settlement_year == year])
         total_due = sum([bill.amount_pln for bill in self.bills if bill.settlement_year == year])
         return total_income - total_due
+    
+    def has_any_bills(self, apartment_key: str, year: int, month: int) -> bool:
+        if month < 1 or month > 12:
+            raise ValueError("Month must be between 1 and 12")
+        if apartment_key not in self.apartments:
+            raise ValueError("Apartment key does not exist")
+        return any([bill for bill in self.bills if bill.apartment == apartment_key and bill.settlement_year == year and bill.settlement_month == month])
