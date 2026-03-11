@@ -56,6 +56,7 @@ class Transfer(BaseModel):
     settlement_year: int | None
     settlement_month: int | None
     tenant: str
+    type: str | None = None
 
     @staticmethod
     def from_json_file(file_path: str) -> List['Transfer']:

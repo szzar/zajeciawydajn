@@ -14,5 +14,13 @@
         "settlement_month": 1,
         "apartment": "apart-polanka",
         "type": "electricity"
+    }, 
+    {
+        "amount_pln": 100.00,
+        "date_due": "2025-02-20",
+        "settlement_year": 2025,
+        "settlement_month": 2,
+        "apartment": "apart-polanka",
+        "type": "water"
     }
 ]
