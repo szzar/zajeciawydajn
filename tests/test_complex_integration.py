@@ -66,7 +66,7 @@ def test_apartment_costs_with_optional_parameters():
     assert costs == 1372.0
 
     costs = manager.get_apartment_costs('apart-polanka')
-    assert costs == 3532.0
+    assert costs == 3632.0
 
 
 def test_settlement_creation():

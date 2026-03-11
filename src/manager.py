@@ -71,4 +71,16 @@ class Manager:
             )
         for tenant in tenants_in_apartment ] 
     
-    
+    def get_debtors(self, apartment_key: str, year: int, month: int) -> List[str]:
+        if month < 1 or month > 12:
+            raise ValueError("Month must be between 1 and 12")
+        output = []
+        settlement = self.get_settlement(apartment_key, year, month)
+        tenant_settlements = self.create_tenants_settlements(settlement)
+
+        for tenant_settlement in tenant_settlements:
+            tenant_transfers = [transfer for transfer in self.transfers if self.tenants[transfer.tenant].name == tenant_settlement.tenant and transfer.settlement_year == year and transfer.settlement_month == month]
+            total_paid = sum([transfer.amount_pln for transfer in tenant_transfers if transfer.settlement_year == year and transfer.settlement_month == month])
+            if total_paid < tenant_settlement.total_due_pln:
+                output.append(tenant_settlement.tenant)
+        return output
