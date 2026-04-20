@@ -24,11 +24,8 @@ class Manager:
                 return False
         return True
     
-    def get_apartment(self, apartment_key: str) -> Apartment | None:
-        for apartment in self.apartments.values():
-            if apartment.key == apartment_key:
-                return apartment
-        return None
+    def get_apartment(self, key: str):
+        return self.apartments.get(key)
 
     def get_apartment_costs(self, apartment_key: str, year: int = None, month: int = None) -> float | None:
         if month is not None and (month < 1 or month > 12):
