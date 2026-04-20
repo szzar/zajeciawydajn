@@ -24,7 +24,7 @@ class Manager:
                 return False
         return True
     
-    def get_apartment(self, key: str):
+    def get_apartment(self, key: str): #uwuzadanko
         return self.apartments.get(key)
 
     def get_apartment_costs(self, apartment_key: str, year: int = None, month: int = None) -> float | None:
