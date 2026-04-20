@@ -18,11 +18,10 @@ class Manager:
         self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
 
-    def check_tenants_apartment_keys(self) -> bool:
-        for tenant in self.tenants.values():
-            if tenant.apartment not in self.apartments:
-                return False
-        return True
+    def check_tenants_apartment_keys(self):
+        valid_keys = set(self.apartments.keys())
+        tenant_apartments = {t.apartment for t in self.tenants.values()}
+        return tenant_apartments.issubset(valid_keys)
     
     def get_apartment(self, key: str): #uwuzadanko
         return self.apartments.get(key)
